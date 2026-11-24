@@ -1,23 +1,20 @@
 const burger = document.querySelector('.burger');
 const nav = document.getElementById('nav');
 
-burger.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
+function setMenu(open) {
+  nav.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', String(open));
   burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+
+burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+document.addEventListener('click', (e) => {
+  if (!nav.contains(e.target) && e.target !== burger) setMenu(false);
 });
 
-const slides = [
-  { src: 'assets/podium.jpg', alt: 'Three white cylindrical podiums on a warm beige background' },
-  { src: 'assets/spheres.jpg', alt: 'Balanced concrete spheres' }
-];
-const slide = document.getElementById('slide');
-let current = 0;
-
-document.querySelectorAll('[data-slide]').forEach((button) => {
-  button.addEventListener('click', () => {
-    current = (current + (button.dataset.slide === 'next' ? 1 : slides.length - 1)) % slides.length;
-    slide.src = slides[current].src;
-    slide.alt = slides[current].alt;
-  });
+document.getElementById('schedule').addEventListener('click', () => {
+  const note = document.getElementById('demo-note');
+  note.hidden = false;
 });

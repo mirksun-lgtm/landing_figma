@@ -25,6 +25,15 @@ test('адаптив: есть стили для 1024 / 768 / 480px и запр�
   assert.match(css, /overflow-x:\s*hidden/);
 });
 
+test('интерактив: мобильное меню закрывается, запись честно помечена как демо', () => {
+  const html = read('index.html');
+  const js = read('script.js');
+  assert.match(js, /Escape/);
+  assert.match(js, /nav\.querySelectorAll\('a'\)/);
+  assert.match(html, /id="demo-note"[^>]*hidden/);
+  assert.doesNotMatch(html, /data-slide=/);
+});
+
 test('макет: локальные картинки exist', () => {
   const html = read('index.html');
   const srcs = [...html.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map((m) => m[1]);
