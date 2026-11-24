@@ -46,6 +46,14 @@ test('мобильное меню поверх hero: шапка создаёт �
   assert.match(topbar, /z-index:10/);
 });
 
+test('логотипы сохраняют естественную пропорцию рамки', () => {
+  const css = read('styles.css');
+  const logos = css.match(/\.logos img\{([^}]*)\}/)[1];
+  assert.match(logos, /height:auto/);
+  assert.match(logos, /object-fit:contain/);
+  assert.match(css, /@media \(max-width:480px\)\{[\s\S]*?\.logos img\{height:auto;max-height:30px/);
+});
+
 test('мобильный hero: зелёная панель не выходит за пределы hero', () => {
   const css = read('styles.css');
   assert.match(css, /\.sage-panel\{height:calc\(100% - 40px\);top:40px\}/);
