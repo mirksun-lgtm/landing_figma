@@ -25,6 +25,12 @@ test('адаптив: есть стили для 1024 / 768 / 480px и запр�
   assert.match(css, /overflow-x:\s*hidden/);
 });
 
+test('картинки сохраняют пропорции: у изображений в контейнерах есть height:auto', () => {
+  const css = read('styles.css');
+  assert.match(css, /\.laptop img\{[^}]*height:auto/);
+  assert.match(css, /\.podium\{[^}]*height:auto/);
+});
+
 test('интерактив: мобильное меню закрывается, запись честно помечена как демо', () => {
   const html = read('index.html');
   const js = read('script.js');
