@@ -47,4 +47,6 @@
 
 ## Деплой
 
-Отдельный репозиторий `landing_figma`, GitHub Pages из ветки `main`.
+Репозиторий: https://github.com/mirksun-lgtm/landing_figma
+Живая страница: https://mirksun-lgtm.github.io/landing_figma/
+GitHub Pages включён из ветки `gh-pages`.
