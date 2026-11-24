@@ -130,7 +130,7 @@ tbody tr td:not(:first-child),thead th:not(:first-child){color:var(--muted)}
   .nav.open{display:flex}
   .hero h1{font-size:clamp(50px,11vw,90px)}
   .hero-visual{margin-top:40px}
-  .sage-panel{height:300px;top:80px}
+  .sage-panel{height:calc(100% - 40px);top:40px}
   .laptop{width:86%}
   .benefits-head{padding-right:0}
   .two-col{grid-template-columns:1fr;gap:40px}

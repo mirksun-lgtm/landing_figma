@@ -31,6 +31,19 @@ test('картинки сохраняют пропорции: у изображ�
   assert.match(css, /\.podium\{[^}]*height:auto/);
 });
 
+test('навигация: все внутренние ссылки ведут на существующие блоки', () => {
+  const html = read('index.html');
+  const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
+  const targets = [...html.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(targets.length > 0);
+  for (const target of targets) assert.ok(ids.has(target), `нет блока #${target}`);
+});
+
+test('мобильный hero: зелёная панель не выходит за пределы hero', () => {
+  const css = read('styles.css');
+  assert.match(css, /\.sage-panel\{height:calc\(100% - 40px\);top:40px\}/);
+});
+
 test('интерактив: мобильное меню закрывается, запись честно помечена как демо', () => {
   const html = read('index.html');
   const js = read('script.js');
