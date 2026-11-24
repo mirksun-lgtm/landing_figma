@@ -39,6 +39,13 @@ test('навигация: все внутренние ссылки ведут н
   for (const target of targets) assert.ok(ids.has(target), `нет блока #${target}`);
 });
 
+test('мобильное меню поверх hero: шапка создаёт слой выше контента', () => {
+  const css = read('styles.css');
+  const topbar = css.match(/\.topbar\{([^}]*)\}/)[1];
+  assert.match(topbar, /position:relative/);
+  assert.match(topbar, /z-index:10/);
+});
+
 test('мобильный hero: зелёная панель не выходит за пределы hero', () => {
   const css = read('styles.css');
   assert.match(css, /\.sage-panel\{height:calc\(100% - 40px\);top:40px\}/);
